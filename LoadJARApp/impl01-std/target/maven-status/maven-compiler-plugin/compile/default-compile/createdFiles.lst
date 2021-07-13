@@ -1,0 +1,4 @@
+org/example/api/impl01/DataSet.class
+org/example/api/impl01/DataSet$Record.class
+org/example/api/impl01/LogStdOut.class
+META-INF/services/org.example.api.LogService

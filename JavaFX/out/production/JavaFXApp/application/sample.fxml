@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?language javascript?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+    <fx:script>
+        var System = Java.type("java.lang.System")
+        var next = 0;
+            function getZyczenia(imie, strategia, szablon){
+                var zyczenia = "";
+                var lines = ["",""];
+                if(szablon.equals("Urodziny"))
+                {
+                    lines = java.nio.file.Files.readAllLines(java.nio.file.Paths.get("./Urodziny.txt"));
+                }
+                else
+                {
+                    lines = java.nio.file.Files.readAllLines(java.nio.file.Paths.get("./Imieniny.txt"));
+                }
+                var random = Math.floor(Math.random() * lines.length);
+
+                if(strategia.equals("Kolejno"))
+                {
+                    zyczenia = lines[next].replace(/%/, imie);
+                    next = next + 1;
+                    if(next >= lines.length)
+                    {
+                        next = 0;
+                    }
+                }
+                else
+                {
+                    zyczenia = lines[random].replace(/%/, imie);
+                }
+                return zyczenia;
+            }
+            function buttonAction(event){
+                textArea.setText(getZyczenia(nameField.getText(),strategy.getSelectionModel().getSelectedItem(),pattern.getSelectionModel().getSelectedItem()));
+            }
+    </fx:script>
+    <children>
+      <ChoiceBox fx:id="strategy" layoutX="175.0" layoutY="83.0" prefHeight="26.0" prefWidth="188.0" value="Losowe">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Losowe" />
+                <String fx:value="Kolejno" />
+            </FXCollections>
+        </items>
+        </ChoiceBox>
+      <ChoiceBox fx:id="pattern" layoutX="175.0" layoutY="118.0" prefHeight="26.0" prefWidth="188.0" value="Urodziny">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Urodziny" />
+                <String fx:value="Imieniny" />
+            </FXCollections>
+        </items>
+        </ChoiceBox>
+      <TextField fx:id="nameField" layoutX="175.0" layoutY="48.0" prefHeight="26.0" prefWidth="188.0" />
+      <TextArea fx:id="textArea" layoutX="21.0" layoutY="192.0" prefHeight="167.0" prefWidth="344.0" wrapText="true" />
+      <Button fx:id="generateBtn" layoutX="174.0" layoutY="157.0" mnemonicParsing="false" onAction="buttonAction(event)" prefHeight="26.0" prefWidth="188.0" text="Generuj Życzenia" />
+      <Label layoutX="99.0" layoutY="53.0" text="Podaj imie:" />
+      <Label layoutX="99.0" layoutY="88.0" text="Strategia:" />
+      <Label layoutX="99.0" layoutY="123.0" text="Szablon:" />
+   </children>
+    <stylesheets>
+        <URL value="@style.css" />
+    </stylesheets>
+</AnchorPane>

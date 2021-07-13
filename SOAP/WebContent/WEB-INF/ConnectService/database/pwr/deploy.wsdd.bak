@@ -1,0 +1,41 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ConnectService WSDL service -->
+
+  <service name="Connect" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://pwr.database"/>
+      <parameter name="wsdlServiceElement" value="ConnectService"/>
+      <parameter name="schemaQualified" value="http://pwr.database"/>
+      <parameter name="wsdlServicePort" value="Connect"/>
+      <parameter name="className" value="database.pwr.ConnectSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="Connect"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="addClient" qname="operNS:addClient" xmlns:operNS="http://pwr.database" soapAction="" >
+        <parameter qname="pns:imie" xmlns:pns="http://pwr.database" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:nazwisko" xmlns:pns="http://pwr.database" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="addInstallation" qname="operNS:addInstallation" xmlns:operNS="http://pwr.database" soapAction="" >
+        <parameter qname="pns:adres" xmlns:pns="http://pwr.database" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:typ" xmlns:pns="http://pwr.database" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:idklienta" xmlns:pns="http://pwr.database" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getNaleznosci" qname="operNS:getNaleznosci" xmlns:operNS="http://pwr.database" soapAction="" >
+      </operation>
+      <operation name="selectClients" qname="operNS:selectClients" xmlns:operNS="http://pwr.database" soapAction="" >
+      </operation>
+      <operation name="selectInstallations" qname="operNS:selectInstallations" xmlns:operNS="http://pwr.database" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="getNaleznosci addClient addInstallation selectClients selectInstallations"/>
+
+  </service>
+</deployment>

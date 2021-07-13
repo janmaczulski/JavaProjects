@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://pwr.database" xmlns:apachesoap="http://xml.apache.org/xml-soap"
+                  xmlns:impl="http://pwr.database" xmlns:intf="http://pwr.database"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://xml.apache.org/xml-soap
+http://schemas.xmlsoap.org/wsdl/ ">
+    <wsdl:types>
+        <schema elementFormDefault="qualified" targetNamespace="http://pwr.database"
+                xmlns="http://www.w3.org/2001/XMLSchema">
+            <element name="addClient">
+                <complexType>
+                    <sequence>
+                        <element name="imie" type="xsd:string"/>
+                        <element name="nazwisko" type="xsd:string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="addClientResponse">
+                <complexType/>
+            </element>
+            <element name="addInstallation">
+                <complexType>
+                    <sequence>
+                        <element name="adres" type="xsd:string"/>
+                        <element name="typ" type="xsd:string"/>
+                        <element name="idklienta" type="xsd:int"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="addInstallationResponse">
+                <complexType/>
+            </element>
+            <element name="getNaleznosci">
+                <complexType/>
+            </element>
+            <element name="getNaleznosciResponse">
+                <complexType/>
+            </element>
+            <element name="selectClients">
+                <complexType/>
+            </element>
+            <element name="selectClientsResponse">
+                <complexType/>
+            </element>
+            <element name="selectInstallations">
+                <complexType/>
+            </element>
+            <element name="selectInstallationsResponse">
+                <complexType/>
+            </element>
+        </schema>
+    </wsdl:types>
+
+    <wsdl:message name="selectClientsResponse">
+
+        <wsdl:part element="impl:selectClientsResponse" name="parameters">
+
+        </wsdl:part>
+
+    </wsdl:message>
+
+    <wsdl:message name="selectClientsRequest">
+
+        <wsdl:part element="impl:selectClients" name="parameters">
+
+        </wsdl:part>
+
+    </wsdl:message>
+
+    <wsdl:message name="addClientRequest">
+
+        <wsdl:part element="impl:addClient" name="parameters">
+
+        </wsdl:part>
+
+    </wsdl:message>
+
+    <wsdl:message name="addInstallationRequest">
+
+        <wsdl:part element="impl:addInstallation" name="parameters">
+
+        </wsdl:part>
+
+    </wsdl:message>
+
+    <wsdl:message name="getNaleznosciResponse">
+
+        <wsdl:part element="impl:getNaleznosciResponse" name="parameters">
+
+        </wsdl:part>
+
+    </wsdl:message>
+
+    <wsdl:message name="getNaleznosciRequest">
+
+        <wsdl:part element="impl:getNaleznosci" name="parameters">
+
+        </wsdl:part>
+
+    </wsdl:message>
+
+    <wsdl:message name="selectInstallationsRequest">
+
+        <wsdl:part element="impl:selectInstallations" name="parameters">
+
+        </wsdl:part>
+
+    </wsdl:message>
+
+    <wsdl:message name="addInstallationResponse">
+
+        <wsdl:part element="impl:addInstallationResponse" name="parameters">
+
+        </wsdl:part>
+
+    </wsdl:message>
+
+    <wsdl:message name="selectInstallationsResponse">
+
+        <wsdl:part element="impl:selectInstallationsResponse" name="parameters">
+
+        </wsdl:part>
+
+    </wsdl:message>
+
+    <wsdl:message name="addClientResponse">
+
+        <wsdl:part element="impl:addClientResponse" name="parameters">
+
+        </wsdl:part>
+
+    </wsdl:message>
+
+    <wsdl:portType name="Connect">
+
+        <wsdl:operation name="addClient">
+
+            <wsdl:input message="impl:addClientRequest" name="addClientRequest">
+
+            </wsdl:input>
+
+            <wsdl:output message="impl:addClientResponse" name="addClientResponse">
+
+            </wsdl:output>
+
+        </wsdl:operation>
+
+        <wsdl:operation name="addInstallation">
+
+            <wsdl:input message="impl:addInstallationRequest" name="addInstallationRequest">
+
+            </wsdl:input>
+
+            <wsdl:output message="impl:addInstallationResponse" name="addInstallationResponse">
+
+            </wsdl:output>
+
+        </wsdl:operation>
+
+        <wsdl:operation name="getNaleznosci">
+
+            <wsdl:input message="impl:getNaleznosciRequest" name="getNaleznosciRequest">
+
+            </wsdl:input>
+
+            <wsdl:output message="impl:getNaleznosciResponse" name="getNaleznosciResponse">
+
+            </wsdl:output>
+
+        </wsdl:operation>
+
+        <wsdl:operation name="selectClients">
+
+            <wsdl:input message="impl:selectClientsRequest" name="selectClientsRequest">
+
+            </wsdl:input>
+
+            <wsdl:output message="impl:selectClientsResponse" name="selectClientsResponse">
+
+            </wsdl:output>
+
+        </wsdl:operation>
+
+        <wsdl:operation name="selectInstallations">
+
+            <wsdl:input message="impl:selectInstallationsRequest" name="selectInstallationsRequest">
+
+            </wsdl:input>
+
+            <wsdl:output message="impl:selectInstallationsResponse" name="selectInstallationsResponse">
+
+            </wsdl:output>
+
+        </wsdl:operation>
+
+    </wsdl:portType>
+
+    <wsdl:binding name="ConnectSoapBinding" type="impl:Connect">
+
+        <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <wsdl:operation name="addClient">
+
+            <wsdlsoap:operation soapAction=""/>
+
+            <wsdl:input name="addClientRequest">
+
+                <wsdlsoap:body use="literal"/>
+
+            </wsdl:input>
+
+            <wsdl:output name="addClientResponse">
+
+                <wsdlsoap:body use="literal"/>
+
+            </wsdl:output>
+
+        </wsdl:operation>
+
+        <wsdl:operation name="addInstallation">
+
+            <wsdlsoap:operation soapAction=""/>
+
+            <wsdl:input name="addInstallationRequest">
+
+                <wsdlsoap:body use="literal"/>
+
+            </wsdl:input>
+
+            <wsdl:output name="addInstallationResponse">
+
+                <wsdlsoap:body use="literal"/>
+
+            </wsdl:output>
+
+        </wsdl:operation>
+
+        <wsdl:operation name="getNaleznosci">
+
+            <wsdlsoap:operation soapAction=""/>
+
+            <wsdl:input name="getNaleznosciRequest">
+
+                <wsdlsoap:body use="literal"/>
+
+            </wsdl:input>
+
+            <wsdl:output name="getNaleznosciResponse">
+
+                <wsdlsoap:body use="literal"/>
+
+            </wsdl:output>
+
+        </wsdl:operation>
+
+        <wsdl:operation name="selectClients">
+
+            <wsdlsoap:operation soapAction=""/>
+
+            <wsdl:input name="selectClientsRequest">
+
+                <wsdlsoap:body use="literal"/>
+
+            </wsdl:input>
+
+            <wsdl:output name="selectClientsResponse">
+
+                <wsdlsoap:body use="literal"/>
+
+            </wsdl:output>
+
+        </wsdl:operation>
+
+        <wsdl:operation name="selectInstallations">
+
+            <wsdlsoap:operation soapAction=""/>
+
+            <wsdl:input name="selectInstallationsRequest">
+
+                <wsdlsoap:body use="literal"/>
+
+            </wsdl:input>
+
+            <wsdl:output name="selectInstallationsResponse">
+
+                <wsdlsoap:body use="literal"/>
+
+            </wsdl:output>
+
+        </wsdl:operation>
+
+    </wsdl:binding>
+
+    <wsdl:service name="ConnectService">
+
+        <wsdl:port binding="impl:ConnectSoapBinding" name="Connect">
+
+            <wsdlsoap:address location="http://localhost:8080/lab08_pop/services/Connect"/>
+
+        </wsdl:port>
+
+    </wsdl:service>
+
+</wsdl:definitions>
